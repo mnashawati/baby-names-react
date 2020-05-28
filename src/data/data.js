@@ -855,3 +855,5 @@ const data = [
     sex: "f",
   },
 ];
+
+export default data;
