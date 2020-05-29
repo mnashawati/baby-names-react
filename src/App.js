@@ -58,23 +58,13 @@ function App() {
         </div>
         <div className="radio female-names">
           <label>
-            <input
-              // onChange={handleForm}
-              name="gender-selector"
-              type="radio"
-              value="Female Names"
-            />
+            <input name="gender-selector" type="radio" value="Female Names" />
             Female Names{" "}
           </label>
         </div>
         <div className="radio all-names">
           <label>
-            <input
-              // onChange={handleForm}
-              name="gender-selector"
-              type="radio"
-              value="All Names"
-            />
+            <input name="gender-selector" type="radio" value="All Names" />
             All Names
           </label>
         </div>
