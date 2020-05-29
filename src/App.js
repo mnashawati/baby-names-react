@@ -46,6 +46,7 @@ function App() {
     //   searchingRange = sortedNames;
     // }
     // console.log(searchingRange);
+
     let searchedNames = searchingRange.filter((obj) =>
       obj.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
