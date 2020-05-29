@@ -31,8 +31,7 @@ function App() {
 
     const maleNames = sortedNames.filter((name) => name.sex === "m");
     const femaleNames = sortedNames.filter((name) => name.sex === "f");
-    // console.log(maleNames);
-    // console.log(femaleNames);
+
     if (selectedButton === "Male Names") {
       setCurrentNames(maleNames);
     } else if (selectedButton === "Female Names") {
