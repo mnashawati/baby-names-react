@@ -7,7 +7,6 @@ function App() {
     a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
   );
 
-  const [searchTerm, setSearchTerm] = useState("");
   const [currentNames, setCurrentNames] = useState([...sortedNames]);
 
   function classPicker(nameObj) {
@@ -19,16 +18,28 @@ function App() {
     return "";
   }
 
-  const filterAndUpdateCurrentNames = (nameObjects) => {
-    const searchResult = nameObjects.filter((obj) =>
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+    const searchedNames = sortedNames.filter((obj) =>
       obj.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    return searchResult;
+    setCurrentNames(searchedNames);
   };
 
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-    setCurrentNames(filterAndUpdateCurrentNames(currentNames));
+  const handleForm = (e) => {
+    const selectedButton = e.target.value;
+
+    const maleNames = sortedNames.filter((name) => name.sex === "m");
+    const femaleNames = sortedNames.filter((name) => name.sex === "f");
+    // console.log(maleNames);
+    // console.log(femaleNames);
+    if (selectedButton === "Male Names") {
+      setCurrentNames(maleNames);
+    } else if (selectedButton === "Female Names") {
+      setCurrentNames(femaleNames);
+    } else {
+      setCurrentNames([...sortedNames]);
+    }
   };
 
   return (
@@ -36,27 +47,39 @@ function App() {
       <input
         className="search-input"
         placeholder="search names"
-        value={searchTerm}
+        // value={searchTerm}
         onChange={handleSearch}
       ></input>
-      <div className="radio male-names">
-        <label>
-          <input name="gender-selector" type="radio" value="Male Names" />
-          Male Names{" "}
-        </label>
-      </div>
-      <div className="radio female-names">
-        <label>
-          <input name="gender-selector" type="radio" value="Female Names" />
-          Female Names{" "}
-        </label>
-      </div>
-      <div className="radio all-names">
-        <label>
-          <input name="gender-selector" type="radio" value="All Names" />
-          All Names
-        </label>
-      </div>
+      <form onChange={handleForm}>
+        <div className="radio male-names">
+          <label>
+            <input name="gender-selector" type="radio" value="Male Names" />
+            Male Names{" "}
+          </label>
+        </div>
+        <div className="radio female-names">
+          <label>
+            <input
+              // onChange={handleForm}
+              name="gender-selector"
+              type="radio"
+              value="Female Names"
+            />
+            Female Names{" "}
+          </label>
+        </div>
+        <div className="radio all-names">
+          <label>
+            <input
+              // onChange={handleForm}
+              name="gender-selector"
+              type="radio"
+              value="All Names"
+            />
+            All Names
+          </label>
+        </div>
+      </form>
 
       <div className="all-names-container">
         {currentNames.map((nameObj) => (
