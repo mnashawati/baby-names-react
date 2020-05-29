@@ -7,7 +7,7 @@ function App() {
     a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
   );
 
-  const [currentNames, setCurrentNames] = useState([...sortedNames]);
+  const [currentNames, setCurrentNames] = useState(sortedNames);
 
   function classPicker(nameObj) {
     if (nameObj.sex === "m") {
@@ -18,28 +18,45 @@ function App() {
     return "";
   }
 
-  const handleSearch = (e) => {
-    const searchTerm = e.target.value;
-    const searchedNames = sortedNames.filter((obj) =>
-      obj.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setCurrentNames(searchedNames);
-  };
+  const maleNames = sortedNames.filter((name) => name.sex === "m");
+  const femaleNames = sortedNames.filter((name) => name.sex === "f");
 
   const handleForm = (e) => {
     const selectedButton = e.target.value;
-
-    const maleNames = sortedNames.filter((name) => name.sex === "m");
-    const femaleNames = sortedNames.filter((name) => name.sex === "f");
 
     if (selectedButton === "Male Names") {
       setCurrentNames(maleNames);
     } else if (selectedButton === "Female Names") {
       setCurrentNames(femaleNames);
     } else {
-      setCurrentNames([...sortedNames]);
+      setCurrentNames(sortedNames);
     }
   };
+
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+    let searchingRange = sortedNames;
+
+    // if (currentNames === [...maleNames]) {
+    //   console.log("males");
+    //   searchingRange = maleNames;
+    // } else if (currentNames === femaleNames) {
+    //   searchingRange = femaleNames;
+    // } else {
+    //   searchingRange = sortedNames;
+    // }
+    // console.log(searchingRange);
+    let searchedNames = searchingRange.filter((obj) =>
+      obj.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setCurrentNames(searchedNames);
+  };
+
+  // console.log(
+  //   sortedNames === currentNames,
+  //   "displaying female?",
+  //   [...femaleNames] === [...currentNames]
+  // );
 
   return (
     <div className="App">
