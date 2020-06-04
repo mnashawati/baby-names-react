@@ -7,7 +7,7 @@ function App() {
     a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
   );
 
-  const [currentNames, setCurrentNames] = useState(sortedNames);
+  const [currentNames, setCurrentNames] = useState([...sortedNames]);
 
   function classPicker(nameObj) {
     if (nameObj.sex === "m") {
@@ -18,16 +18,16 @@ function App() {
     return "";
   }
 
-  const maleNames = sortedNames.filter((name) => name.sex === "m");
-  const femaleNames = sortedNames.filter((name) => name.sex === "f");
+  const boyNames = sortedNames.filter((name) => name.sex === "m");
+  const girlNames = sortedNames.filter((name) => name.sex === "f");
 
   const handleForm = (e) => {
     const selectedButton = e.target.value;
 
-    if (selectedButton === "Male Names") {
-      setCurrentNames(maleNames);
-    } else if (selectedButton === "Female Names") {
-      setCurrentNames(femaleNames);
+    if (selectedButton === "Boy Names") {
+      setCurrentNames(boyNames);
+    } else if (selectedButton === "Girl Names") {
+      setCurrentNames(girlNames);
     } else {
       setCurrentNames(sortedNames);
     }
@@ -70,14 +70,14 @@ function App() {
       <form onChange={handleForm}>
         <div className="radio male-names">
           <label>
-            <input name="gender-selector" type="radio" value="Male Names" />
-            Male Names{" "}
+            <input name="gender-selector" type="radio" value="Boy Names" />
+            Boy Names{" "}
           </label>
         </div>
         <div className="radio female-names">
           <label>
-            <input name="gender-selector" type="radio" value="Female Names" />
-            Female Names{" "}
+            <input name="gender-selector" type="radio" value="Girl Names" />
+            Girl Names{" "}
           </label>
         </div>
         <div className="radio all-names">
