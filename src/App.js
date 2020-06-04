@@ -19,17 +19,23 @@ function App() {
     return "";
   }
 
-  const filterAndUpdateCurrentNames = (nameObjects) => {
+  const filterAndUpdateCurrentNames = (searchingFor, nameObjects) => {
+    console.log("filter and look for searchingFor: ", `=>${searchingFor}<=`);
+
     const searchResult = nameObjects.filter((obj) =>
-      obj.name.toLowerCase().includes(searchTerm.toLowerCase())
+      obj.name.toLowerCase().includes(searchingFor.toLowerCase())
     );
     return searchResult;
   };
 
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-    setCurrentNames(filterAndUpdateCurrentNames(currentNames));
+    console.log("handlesearch: ", e.target.value);
+    const tempSearchTerm = e.target.value;
+    setSearchTerm(tempSearchTerm);
+    setCurrentNames(filterAndUpdateCurrentNames(tempSearchTerm, currentNames));
   };
+
+  console.log("returning JSX");
 
   return (
     <div className="App">
